@@ -1,5 +1,5 @@
 import { instanceToInstance } from "class-transformer";
-import { User } from "../../auth/infra/typeorm/entities/User";
+import { User } from "../../auth/infra/prisma/entities/User";
 
 class UserMap {
   static toDTO({

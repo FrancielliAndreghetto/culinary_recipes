@@ -1,6 +1,6 @@
 import { IRegisterUserDTO } from "../dtos/IRegisterUserDTO";
 import { IUpdateUserDTO } from "../dtos/IUpdateUserDTO";
-import { User } from "../infra/typeorm/entities/User";
+import { User } from "../infra/prisma/entities/User";
 
 interface IUsersRepository {
   findByEmail(email: string): Promise<User>;
