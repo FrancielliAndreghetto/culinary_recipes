@@ -46,19 +46,18 @@ class AuthenticateUserUseCase {
     }
 
     const passwordMatch = await compare(password, user.password);
-    const groups = user.group;
-    const institution = user.institution_id;
+    // const permissions = user.permissions;
 
     if (!passwordMatch) {
       throw new AppError("Incorrect email or password", 401);
     }
 
-    const token = sign({ groups, institution }, secret_token, {
+    const token = sign({}, secret_token, {
       subject: String(user.id),
       expiresIn: expires_in_token,
     });
 
-    const refresh_token = sign({ email, groups, institution }, secret_refresh_token, {
+    const refresh_token = sign({ email }, secret_refresh_token, {
       subject: String(user.id),
       expiresIn: expires_in_refresh_token,
     });
