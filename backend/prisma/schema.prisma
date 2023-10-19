@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model group {
+  id                   Int                    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name                 String                 @db.VarChar(128)
+  description          String                 @db.VarChar(256)
+  institution_id       Int
+  group_has_permission group_has_permission[]
+  user                 user[]
+}
+
+model group_has_permission {
+  id             Int         @unique(map: "id_UNIQUE") @default(autoincrement())
+  group_id       Int
+  permission_id  Int
+  group          group       @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_group_has_permission_group1")
+  permission     permission  @relation(fields: [permission_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_group_has_permission_permission1")
+
+  @@id([id, group_id, permission_id])
+  @@index([group_id], map: "fk_group_has_permission_group1_idx")
+  @@index([permission_id], map: "fk_group_has_permission_permission1_idx")
+}
+
+model permission {
+  id                   Int                    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name                 String                 @db.VarChar(128)
+  description          String                 @db.VarChar(256)
+  permission           String                 @db.VarChar(64)
+  module               String                 @db.VarChar(64)
+  group_has_permission group_has_permission[]
+}
+
+model user {
+  id                    Int                     @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name                  String                  @db.VarChar(104)
+  email                 String                  @db.VarChar(128)
+  password              String                  @db.VarChar(64)
+  group_id              Int                     @default(1)
+  group                 group                   @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_group1")
+  user_token            user_token[]
+
+  @@index([group_id], map: "fk_user_group1_idx")
+}
+
+model user_token {
+  id            Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  refresh_token String    @db.LongText
+  expires_date  DateTime  @db.Timestamp(0)
+  created_at    DateTime? @default(now()) @db.Timestamp(0)
+  user_id       Int
+  user          user      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_token_user1")
+
+  @@index([user_id], map: "fk_user_token_user1_idx")
+}
