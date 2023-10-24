@@ -43,8 +43,8 @@ model user {
   avaliation avaliation[]
   favorite   favorite[]
   recipe     recipe[]
-  user_token            user_token[]
   group      group?       @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_group1")
+  user_token user_token[]
 
   @@index([group_id], map: "fk_user_group1_idx")
 }
@@ -66,6 +66,7 @@ model category {
   id                  Int                   @id @unique(map: "id_UNIQUE") @default(autoincrement())
   title               String                @db.VarChar(128)
   description         String                @db.Text
+  file                file[]
   recipe_has_category recipe_has_category[]
 }
 
@@ -81,13 +82,16 @@ model favorite {
 }
 
 model file {
-  id        Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  file_path String    @db.Text
-  type      file_type
-  recipe_id Int
-  recipe    recipe    @relation(fields: [recipe_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_file_recipe1")
+  id          Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  file_path   String    @db.Text
+  type        String
+  recipe_id   Int?
+  category_id Int?
+  category    category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_file_category1")
+  recipe      recipe?   @relation(fields: [recipe_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_file_recipe1")
 
   @@index([recipe_id], map: "fk_file_recipe1_idx")
+  @@index([category_id], map: "fk_file_category1_idx")
 }
 
 model recipe {
@@ -121,17 +125,12 @@ model recipe_has_category {
 }
 
 model user_token {
-  id            Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  refresh_token String    @db.LongText
-  expires_date  DateTime  @db.Timestamp(0)
-  created_at    DateTime? @default(now()) @db.Timestamp(0)
+  id            Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  refresh_token String   @db.LongText
+  expires_date  DateTime @db.Timestamp(0)
+  created_at    DateTime @default(now()) @db.Timestamp(0)
   user_id       Int
-  user          user      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_token_user1")
+  user          user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_token_user1")
 
   @@index([user_id], map: "fk_user_token_user1_idx")
-}
-
-enum file_type {
-  Image
-  Video
 }

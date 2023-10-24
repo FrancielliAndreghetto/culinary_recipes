@@ -1,6 +1,6 @@
 import Image from "next/image"
 import logo from "../../assets/image/Logo.png"
-import login from "../../assets/image/login.png"
+import login from "../../assets/image/Login.png"
 
 export default function Login() {
     return (
@@ -17,7 +17,7 @@ export default function Login() {
                             </div>
                             <div className="flex flex-col">
                                 <label className="text-gray-950 text-sm font-normal" htmlFor="password">Senha</label>
-                                <input className="bg-white rounded-md border-solid border-[0.5px] border-[rgba(255,161,74,0.7)] h-9 pl-4 focus:outline-none text-sm" type="password" id="password" name="password"></input>
+                                <input className="bg-white rounded-md border-solid border-[0.5px] border-[rgba(255,161,74,0.7)] h-9 pl-4 focus:outline-none text-sm" placeholder="Sua senha" type="password" id="password" name="password"></input>
                                 <a href="forgot-password" className="hover:underline text-xs font-normal mt-1 w-fit">Esqueceu a senha?</a>
                             </div>
                             <button className="w-full h-12 bg-[rgba(255,161,74,0.7)] rounded-md text-white">Logar-se</button>
