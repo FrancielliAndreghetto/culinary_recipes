@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import "dotenv/config";
+import cors from 'cors';
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors"
 import morgan from 'morgan'
@@ -14,6 +15,13 @@ import upload from "@config/upload";
 
 const app = express();
 
+app.use(
+  cors({
+    origin: '*', // Substitua pela URL do seu frontend
+    methods: 'GET,POST,PUT,DELETE',    // Métodos permitidos
+    credentials: true                 // Permite credenciais (cookies, cabeçalhos de autorização)
+  })
+);
 app.use(morgan('dev'));
 app.use(urlencoded({ extended: false}));
 app.use(express.json());

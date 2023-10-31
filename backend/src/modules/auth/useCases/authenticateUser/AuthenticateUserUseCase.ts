@@ -15,10 +15,11 @@ interface IRequest {
 
 interface IResponse {
   user: {
+    id: number;
     email: string;
+    name: string;
   };
   token: string;
-  refresh_token: string;
 }
 
 @injectable()
@@ -57,27 +58,13 @@ class AuthenticateUserUseCase {
       expiresIn: expires_in_token,
     });
 
-    const refresh_token = sign({ email }, secret_refresh_token, {
-      subject: String(user.id),
-      expiresIn: expires_in_refresh_token,
-    });
-
-    const refresh_token_expires_date = this.dateProvider.addDays(
-      expires_refresh_token_days
-    );
-
-    await this.usersTokensRepository.create({
-      user_id: user.id,
-      refresh_token,
-      expires_date: refresh_token_expires_date,
-    });
-
     const tokenReturn: IResponse = {
       token,
       user: {
-        email: user.email
+        id: user.id,
+        email: user.email,
+        name: user.name
       },
-      refresh_token,
     };
 
     return tokenReturn;
