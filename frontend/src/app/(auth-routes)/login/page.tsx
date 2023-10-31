@@ -14,13 +14,13 @@ import { SyntheticEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 
 export default function Login() {
-	const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+	const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const router = useRouter()
 
   async function handleSubmit(event: SyntheticEvent) {
-    event.preventDefault()
+    event.preventDefault();
 
     const result = await signIn('credentials', {
       email,

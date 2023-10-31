@@ -2,7 +2,6 @@ import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route"
 import ButtonLogout from "@components/button/ButtonLogout"
 import { getServerSession } from "next-auth"
 
-
 export default async function Admin(){
 	const session = await getServerSession(nextAuthOptions);
 	console.log(session);
