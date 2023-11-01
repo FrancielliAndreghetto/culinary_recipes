@@ -1,6 +1,7 @@
 import NavBar from "@components/navegation/NavBar"
 import { nextAuthOptions } from "@app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth"
+import SideBar from "@components/navegation/SideBar";
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
@@ -8,7 +9,7 @@ export default async function Home() {
   return (
     <main className="">
       <NavBar session={session}></NavBar>
-      <h1>Hello world!</h1>
+      <SideBar/>
     </main>
   )
 }

@@ -59,8 +59,8 @@ export default function NavBar({ ...props }) {
 			</div>
 			{status === "loading" || status === "unauthenticated" ? (
 				<div className="h-8 flex gap-2">
-					<a href="register" className="flex justify-center items-center w-32 h-full border-[1px] border-[rgba(225,152,83,0.7)] text-[rgba(225,152,83,0.7)] rounded-lg hover:bg-[rgba(207,140,76,0.7)] hover:border-[rgba(207,140,76,0.7)] hover:text-white">Registrar-se</a>
 					<a href="login" className="flex justify-center items-center w-20 h-full bg-[rgba(225,152,83,0.7)] rounded-lg text-white hover:bg-[rgba(207,140,76,0.7)]">Login</a>
+					<a href="register" className="flex justify-center items-center w-32 h-full border-[1px] border-[rgba(225,152,83,0.7)] text-[rgba(225,152,83,0.7)] rounded-lg hover:bg-[rgba(207,140,76,0.7)] hover:border-[rgba(207,140,76,0.7)] hover:text-white">Registrar-se</a>
 				</div>
 			) : (
 				<div className="h-8 flex justify-center items-center gap-2 cursor-pointer" onClick={toggleMenu} >
