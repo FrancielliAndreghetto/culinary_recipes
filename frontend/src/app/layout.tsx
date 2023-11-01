@@ -22,7 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className="bg-gradient-to-r from-[#FEDCC5] to-[#FEDDC6]" lang="en">
+    <html className="bg-[#FFF1E4]" lang="en">
+    {/* <html className="bg-gradient-to-r from-[#FEDCC5] to-[#FEDDC6]" lang="en"> */}
       <body className={poppins.className}>
         <NextAuthSessionProvider>
           <ToastContainer />
