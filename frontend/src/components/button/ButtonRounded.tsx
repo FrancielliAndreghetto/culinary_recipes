@@ -3,17 +3,21 @@ import { LucideIcon } from "lucide-react"
 interface ButtonProps {
   Icon: LucideIcon;
   href: string;
+  text: string;
+  active?: boolean;
 }
 
 
-export default function ButtonRounded({ Icon, href, ...props }: ButtonProps) {
+export default function ButtonRounded({ active = false, Icon, href, text, ...props }: ButtonProps) {
   return (
     <a
       href={href}
-      className="bg-gray-100 flex rounded-full w-10 h-10 justify-center items-center hover:bg-[rgba(225,152,83,0.7)] hover:text-white"
+      data-active={active}
+      className="flex flex-col w-20 h-16 justify-center items-center hover:bg-[#ffeedf] text-zinc-800 text-xs gap-1 data-[active=true]:bg-[#ffeedf]"
       {...props}
     >
-      <Icon color="#959895" />
+      <Icon color="#5e5e61" />
+      {text}
     </a>
   )
 }
