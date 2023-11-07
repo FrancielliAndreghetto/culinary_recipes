@@ -32,16 +32,16 @@ function renderStars(stars: number) {
 
 export default function BestRecipeCard({ stars }: CardProps) {
   return (
-    <div className="w-100% h-[630px] bg-[rgb(255,255,255,0.50)] backdrop-blur-md rounded-2xl hover:shadow-sm transition-all">
+    <div className="w-100% h-auto bg-[rgb(255,255,255,0.50)] backdrop-blur-md rounded-2xl hover:shadow-sm transition-all">
       <div className="p-12 h-full flex gap-12">
         <div className="w-3/6 h-full flex flex-col gap-10 justify-center">
-          <div className="flex gap-6 h-full w-full">
-            <Image className="w-[440px] h-full object-cover rounded-2xl" src={pizza} alt="" />
+          <div className="flex gap-6 h-full w-full max-md:flex-col">
+            <Image className="w-[440px] h-auto object-cover rounded-2xl" src={pizza} alt="" />
             <div className="flex flex-col gap-7 h-full justify-center">
-              <Image className="w-28 h-28 rounded-2xl" src={pizza} alt="" />
-              <Image className="w-28 h-28 rounded-2xl" src={pizza} alt="" />
-              <Image className="w-28 h-28 rounded-2xl" src={pizza} alt="" />
-              <Image className="w-28 h-28 rounded-2xl" src={pizza} alt="" />
+              <Image className="w-28 h-28 rounded-2xl max-md:w-full" src={pizza} alt="" />
+              <Image className="w-28 h-28 rounded-2xl max-md:w-full" src={pizza} alt="" />
+              <Image className="w-28 h-28 rounded-2xl max-md:w-full" src={pizza} alt="" />
+              <Image className="w-28 h-28 rounded-2xl max-md:w-full" src={pizza} alt="" />
             </div>
           </div>
         </div>

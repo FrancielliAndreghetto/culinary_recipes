@@ -17,7 +17,7 @@ export default function ButtonRounded({ active = false, Icon, href, text, ...pro
       {...props}
     >
       <Icon color="#5e5e61" />
-      {text}
+      <span className="hidden md:inline">{text}</span>
     </a>
   )
 }

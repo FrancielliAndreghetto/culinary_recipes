@@ -6,7 +6,7 @@ import { IUsersTokensRepository } from "@modules/auth/repositories/IUsersTokensR
 import { IUsersRepository } from "@modules/auth/repositories/IUsersRepository";
 
 interface IRequest {
-  token: string;
+  code: string;
   password: string;
 }
 
@@ -20,9 +20,9 @@ class ResetPasswordUserUseCase {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository
   ) {}
-  async execute({ token, password }: IRequest): Promise<void> {
+  async execute({ code, password }: IRequest): Promise<void> {
     const userToken = await this.usersTokensRepository.findByRefreshToken(
-      token
+      code
     );
 
     if (!userToken) {
