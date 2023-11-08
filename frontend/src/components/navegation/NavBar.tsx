@@ -78,25 +78,25 @@ export default function NavBar({ ...props }) {
 					text="Ínicio"
 				/>
 				<ButtonRounded
-					active={route == 'categorias'}
+					active={route == '/categorias'}
 					href="categorias"
 					Icon={UtensilsCrossed}
 					text="Categorias"
 				/>
 				<ButtonRounded
-					active={route == 'receitas'}
+					active={route == '/receitas'}
 					href="receitas"
 					Icon={BookOpen}
 					text="Receitas"
 				/>
 				<ButtonRounded
-					active={route == 'permissoes'}
+					active={route == '/permissoes'}
 					href="permissoes"
 					Icon={Lock}
 					text="Permissões"
 				/>
 				<ButtonRounded
-					active={route == 'favoritos'}
+					active={route == '/favoritos'}
 					href="favoritos"
 					Icon={Star}
 					text="Favoritos"

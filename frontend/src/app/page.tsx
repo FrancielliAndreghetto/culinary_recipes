@@ -25,6 +25,7 @@ export default async function Home() {
               <CategoryCard title="Bolos" />
               <CategoryCard title="Bolos" />
               <CategoryCard title="Bolos" />
+              <CategoryCard title="Bolos" />
             </div>
           </div>
           <div className="py-24">
@@ -32,7 +33,7 @@ export default async function Home() {
               <h1 className="font-semibold text-5xl">Melhores receitas</h1>
               <a href="categorias" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
             </div>
-            <div className="flex flex-wrap justify-center gap-14">
+            <div className="flex flex-wrap justify-center gap-20">
               <RecipeCard title="Bolos" stars={5} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
               <RecipeCard title="Bolos" stars={3} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
               <RecipeCard title="Bolos" stars={4} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />

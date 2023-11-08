@@ -53,7 +53,7 @@ export default function Login() {
 			theme: 'light',
 			onClose: () => {
 				setTimeout(() => {
-					router.replace('/admin');
+					router.replace('/');
 				}, 3000);
 			},
 		});
