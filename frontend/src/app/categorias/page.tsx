@@ -5,14 +5,13 @@ import NavBar from "@components/navegation/NavBar";
 import { useState } from "react";
 
 export default function Categorias() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   return (
     <>
       <NavBar />
       <main className="relative z-1">
-        <div className="container z-1 mx-auto">
-        <div className="py-24">
+        <div className="container z-1 mx-auto py-24">
             <div className="flex justify-between items-center pb-11">
               <h1 className="font-semibold text-5xl">Categorias</h1>
             </div>
@@ -41,7 +40,6 @@ export default function Categorias() {
               <CategoryCard isAdmin={isAdmin} title="Bolos" />
               <CategoryCard isAdmin={isAdmin} title="Bolos" />
             </div>
-          </div>
         </div>
       </main>
     </>
