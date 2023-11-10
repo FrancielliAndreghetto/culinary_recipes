@@ -1,5 +1,4 @@
-import NavBar from "@components/navegation/NavBar"
-import SideBar from "@components/navegation/SideBar";
+import NavBar from "@components/navegation/NavBar";
 import DashboardCard from "@components/cards/DashboardCard";
 import { ChevronRight } from "lucide-react";
 import CategoryCard from "@components/cards/CategoryCard";
