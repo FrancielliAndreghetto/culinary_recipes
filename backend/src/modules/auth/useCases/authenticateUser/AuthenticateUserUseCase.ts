@@ -15,9 +15,9 @@ interface IRequest {
 
 interface IResponse {
   user: {
-    id: number;
     email: string;
     name: string;
+    admin: boolean;
   };
   token: string;
 }
@@ -54,16 +54,15 @@ class AuthenticateUserUseCase {
     }
 
     const token = sign({}, secret_token, {
-      subject: String(user.id),
       expiresIn: expires_in_token,
     });
 
     const tokenReturn: IResponse = {
       token,
       user: {
-        id: user.id,
         email: user.email,
-        name: user.name
+        name: user.name,
+        admin: user.admin
       },
     };
 

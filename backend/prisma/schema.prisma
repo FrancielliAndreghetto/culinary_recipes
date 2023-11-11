@@ -39,6 +39,7 @@ model user {
   name       String       @db.VarChar(64)
   email      String       @db.VarChar(128)
   password   String       @db.VarChar(64)
+  admin      Boolean?     @default(false)
   avatar_url String?      @db.VarChar(256)
   avaliation avaliation[]
   favorite   favorite[]
@@ -84,7 +85,7 @@ model favorite {
 model file {
   id          Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
   file_path   String    @db.Text
-  type        String
+  type        String    @db.VarChar(64)
   recipe_id   Int?
   category_id Int?
   category    category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_file_category1")

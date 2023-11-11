@@ -17,6 +17,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^9.1.3",
+    "react-tooltip": "^5.22.0",
     "swiper": "^11.0.3",
     "video-react": "^0.16.0"
   },

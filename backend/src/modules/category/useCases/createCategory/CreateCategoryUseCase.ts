@@ -19,7 +19,6 @@ class CreateCategoryUseCase {
     description,
     image
   }: ICreateCategoryDTO): Promise<IResponse> {
-    console.log(image)
     if (image) {
       const category = await this.categoriesRepository.saveWithImage({
         title,

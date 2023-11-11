@@ -8,7 +8,13 @@ import { IUpdateCategoryDTO } from "@modules/category/dtos/IUpdateCategoryDTO";
 
 class CategoriesRepository implements ICategoriesRepository {
   async findAllCategories(): Promise<Category[]> {
-    const categories = prismaClient.category.findMany();
+    const categories = prismaClient.category.findMany({
+      include: {
+        file: {
+          take: 1,
+        },
+      },
+    });
 
     return categories;
   }
@@ -20,6 +26,7 @@ class CategoriesRepository implements ICategoriesRepository {
       },
       include: {
         file: {
+          take: 1,
         }
       },
     });

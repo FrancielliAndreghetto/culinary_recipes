@@ -17,10 +17,11 @@ const getCategoriesController = new GetCategoriesController();
 const createCategoryController = new CreateCategoryController();
 const deleteCategoryController = new DeleteCategoryController();
 const updateCategoryController = new UpdateCategoryController();
-
-categoriesRoutes.get("/:id", ensureAuthenticated, upload.none(), havePermission("category.get"), getCategoryController.handle);
-categoriesRoutes.get("/", ensureAuthenticated, havePermission("category.get"), getCategoriesController.handle);
-categoriesRoutes.post("/", ensureAuthenticated, upload.single("image"), havePermission("category.create"), createCategoryController.handle);
+// , havePermission("category.get")
+// havePermission("category.create"),
+categoriesRoutes.get("/:id", ensureAuthenticated, upload.none(), getCategoryController.handle);
+categoriesRoutes.get("/", getCategoriesController.handle);
+categoriesRoutes.post("/", ensureAuthenticated, upload.single("image"), createCategoryController.handle);
 categoriesRoutes.patch("/", ensureAuthenticated, upload.single("image"), havePermission("category.update"), updateCategoryController.handle);
 categoriesRoutes.delete("/:id", ensureAuthenticated, havePermission("category.delete"), deleteCategoryController.handle);
 
