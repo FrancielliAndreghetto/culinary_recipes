@@ -20,7 +20,7 @@ const updateCategoryController = new UpdateCategoryController();
 // , havePermission("category.get")
 // havePermission("category.create"),,
 // havePermission("category.update"),
-categoriesRoutes.get("/:id", ensureAuthenticated, upload.none(), getCategoryController.handle);
+categoriesRoutes.get("/:id", upload.none(), getCategoryController.handle);
 categoriesRoutes.get("/", getCategoriesController.handle);
 categoriesRoutes.post("/", ensureAuthenticated, upload.single("image"), createCategoryController.handle);
 categoriesRoutes.patch("/:id", ensureAuthenticated, upload.single("image"), updateCategoryController.handle);

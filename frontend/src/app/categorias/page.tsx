@@ -56,9 +56,7 @@ export default function Categorias() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (session?.token) {
         await fetchCategories();
-      }
     };
     fetchData();
   }, [session?.token, fetchCategories]);
@@ -177,6 +175,7 @@ export default function Categorias() {
                 updateFunction={() => handleUpdateCategory(category)}
                 file={category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : bolo}
                 key={category.id}
+                id={category.id}
                 isAdmin={isAdmin}
                 title={category.title} />
             ))}

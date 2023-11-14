@@ -14,6 +14,7 @@ import bolo from "@assets/bolo.jpg";
 import { useEffect, useState } from "react";
 
 export default function DashboardCard() {
+  const appUrl = process.env.appUrl;
   const { status } = useSession();
   const [slides, setSlides] = useState(3);
   const [spacing, setSpacing] = useState(30);
@@ -43,7 +44,7 @@ export default function DashboardCard() {
             <p className="text-base max-xl:text-sm font-normal text-[#12103DCC]">Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit.</p>
           </div>
           <div className="flex gap-4">
-            <a className="px-6 py-3 max-xl:px-3 max-lg:text-xs max-lg:px-3 max-lg:py-1 text-center bg-[#FFA14AB2] hover:bg-[#ffa14a93] rounded-3xl text-white cursor-pointer">Ver receitas</a>
+            <a href={`${appUrl}receitas`} className="px-6 py-3 max-xl:px-3 max-lg:text-xs max-lg:px-3 max-lg:py-1 text-center bg-[#FFA14AB2] hover:bg-[#ffa14a93] rounded-3xl text-white cursor-pointer">Ver receitas</a>
             {status === "authenticated" && (
               <a className="px-6 py-3 text-center max-lg:text-xs max-lg:px-3 max-lg:py-1 bg-[#FF4A2226] hover:bg-[#ff4a221c] rounded-3xl text-[#FFA14AB2] cursor-pointer">Adicionar receita</a>
             )}

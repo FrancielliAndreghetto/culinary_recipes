@@ -4,12 +4,15 @@ import { ChevronRight, Pencil, Trash } from "lucide-react";
 interface CardProps {
   title: string;
   file: string;
+  id: number;
   isAdmin?: boolean;
   deleteFunction?: any;
   updateFunction?: any;
 }
 
-export default function CategoryCard({ title, file, isAdmin = false, deleteFunction = null, updateFunction = null }: CardProps) {
+export default function CategoryCard({ title, file, id, isAdmin = false, deleteFunction = null, updateFunction = null }: CardProps) {
+  const appUrl = process.env.appUrl;
+  
   return (
     <div className="w-52 h-96 bg-[#FFFFFF80] backdrop-blur-md hover:bg-[#FFA14AB2] transition-all rounded-3xl flex flex-col justify-evenly items-center group">
       <Image className="rounded-full w-28 h-28 object-fill" width={100} height={100} src={file} alt=""/>
@@ -26,9 +29,9 @@ export default function CategoryCard({ title, file, isAdmin = false, deleteFunct
             </button>
           </>
         )}
-        <div data-tooltip-id="tooltip" data-tooltip-content="Acessar categoria" className="tooltip w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
+        <a href={`${appUrl}receitas?category=${id}`} data-tooltip-id="tooltip" data-tooltip-content="Acessar categoria" className="tooltip w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
           <ChevronRight width={24} height={24} className="text-white group-hover:text-[#FFA14AB2]" />
-        </div>
+        </a>
       </div>
     </div>
   )
