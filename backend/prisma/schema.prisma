@@ -100,10 +100,10 @@ model recipe {
   title                 String                @db.VarChar(80)
   description           String                @db.VarChar(45)
   ingredients           String                @db.LongText
-  portion               Decimal?              @db.Decimal(2, 2)
+  portion               Decimal?              @db.Decimal(2, 0)
   preparation           String?               @db.LongText
   adicional_information String?               @db.LongText
-  cooking_hours         Float?                @db.Float
+  cooking_hours         Decimal?              @db.Decimal(2, 0)
   user_id               Int
   avaliation            avaliation[]
   favorite              favorite[]

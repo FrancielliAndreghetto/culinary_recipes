@@ -6,6 +6,7 @@ interface CardProps {
   title: string;
   description: string;
   stars: number;
+  id: number;
 }
 
 function renderStars(stars: number) {
@@ -29,20 +30,22 @@ function renderStars(stars: number) {
   return starIcons;
 }
 
-export default function RecipeCard({ title, description, stars }: CardProps) {
+export default function RecipeCard({ title, description, stars, id }: CardProps) {
+  const appUrl = process.env.appUrl;
+
   return (
     <div className="w-[350px] h-[350px] bg-[#FFFFFF80] backdrop-blur-md rounded-3xl flex flex-col justify-evenly mt-24 items-center group hover:shadow-lg transition-all">
       <Image className="rounded-full w-52 h-52 -mt-28 object-fill" src={bolo} alt="" />
-      <div className="px-8 flex flex-col gap-6">
+      <div className="px-8 flex flex-col gap-6 w-full">
         <h1 className="text-black text-3xl text-center font-medium">{title}</h1>
         <p className="text-[#333333CC] text-base">{description}</p>
         <div className="flex justify-between">
-          <div className="flex items-center space-x-1">
+          <div data-tooltip-id="tooltip" data-tooltip-content={`${stars} estrelas`} className="flex items-center space-x-1">
             {renderStars(stars)}
           </div>
-          <div className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full cursor-pointer">
+          <a href={`${appUrl}receita/${id}`} data-tooltip-id="tooltip" data-tooltip-content="Acessar receita" className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full cursor-pointer">
             <ChevronRight width={24} height={24} className="text-white" />
-          </div>
+          </a>
         </div>
       </div>
     </div>

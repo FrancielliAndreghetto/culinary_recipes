@@ -18,6 +18,7 @@ export default function NavBar({ ...props }) {
 	const menuRef = useRef<HTMLDivElement | null>(null);
 	const pathname = usePathname();
 	const [route, setRoute] = useState(pathname);
+	const appUrl = process.env.appUrl;
 
 	async function logout() {
 		await signOut({
@@ -73,31 +74,31 @@ export default function NavBar({ ...props }) {
 			<div className="flex w-6/12 max-md:w-7/12 justify-center items-center">
 				<ButtonRounded
 					active={route == '/'}
-					href="/"
+					href={`${appUrl}`}
 					Icon={Home}
 					text="Ínicio"
 				/>
 				<ButtonRounded
-					active={route == '/categorias'}
-					href="categorias"
+					active={route.includes('/categorias')}
+					href={`${appUrl}categorias`}
 					Icon={UtensilsCrossed}
 					text="Categorias"
 				/>
 				<ButtonRounded
-					active={route == '/receitas'}
-					href="receitas"
+					active={route.includes('/receita')}
+					href={`${appUrl}receitas`}
 					Icon={BookOpen}
 					text="Receitas"
 				/>
 				<ButtonRounded
-					active={route == '/permissoes'}
-					href="permissoes"
+					active={route == '/cargos'}
+					href={`${appUrl}cargos`}
 					Icon={Lock}
 					text="Permissões"
 				/>
 				<ButtonRounded
 					active={route == '/favoritos'}
-					href="favoritos"
+					href={`${appUrl}favoritos`}
 					Icon={Star}
 					text="Favoritos"
 				/>

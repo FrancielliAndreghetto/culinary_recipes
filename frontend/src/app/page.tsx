@@ -12,6 +12,7 @@ import { api } from "@services/api";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import bolo from "@assets/bolo.jpg";
+import { Tooltip } from "react-tooltip";
 
 type Category = {
   id: number;
@@ -84,9 +85,9 @@ export default function Home() {
               <a href="categorias" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
             </div>
             <div className="flex flex-wrap justify-center gap-20">
-              <RecipeCard title="Bolos" stars={5} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
-              <RecipeCard title="Bolos" stars={3} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
-              <RecipeCard title="Bolos" stars={4} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
+              <RecipeCard id={4} title="Bolos" stars={5} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
+              <RecipeCard id={4} title="Bolos" stars={3} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
+              <RecipeCard id={4} title="Bolos" stars={4} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
             </div>
           </div>
           <div className="py-24">
@@ -97,6 +98,7 @@ export default function Home() {
             <BestRecipeCard stars={5} />
           </div>
         </div>
+        <Tooltip id="tooltip" style={{ background: '#fff', color: "#000", boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)", zIndex: "20" }} />
       </main>
       <Footer />
     </>

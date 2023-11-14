@@ -12,6 +12,7 @@ import Button from "@components/button/Button"
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
+import toastOptions from '@services/toastConfig';
 
 export default function Register() {
   const router = useRouter();
@@ -43,16 +44,7 @@ export default function Register() {
         }); 
       }
     } catch (error) {
-      toast.error('Erro ao fazer registro, verifique os dados!', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error('Erro ao fazer registro, verifique os dados!', toastOptions);
     }
   };
 

@@ -18,10 +18,11 @@ const app = express();
 app.use(
   cors({
     origin: '*', // Substitua pela URL do seu frontend
-    methods: 'GET,POST,PUT,DELETE',    // Métodos permitidos
+    methods: 'GET,POST,PUT,DELETE,PATCH',    // Métodos permitidos
     credentials: true                 // Permite credenciais (cookies, cabeçalhos de autorização)
   })
 );
+
 app.use(morgan('dev'));
 app.use(urlencoded({ extended: false}));
 app.use(express.json());

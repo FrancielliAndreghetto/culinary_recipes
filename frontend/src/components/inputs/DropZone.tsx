@@ -2,11 +2,12 @@ import React, { ChangeEvent, useState } from "react";
 import Image from "next/image";
 
 interface DropzoneProps {
+  file: any;
   onFileChange: (file: File | null) => void;
 }
 
-const Dropzone: React.FC<DropzoneProps> = ({ onFileChange }) => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+const Dropzone: React.FC<DropzoneProps> = ({ file = null, onFileChange }) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(file);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
@@ -42,7 +43,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ onFileChange }) => {
             <p className="text-xs text-gray-500">PNG ou JPG</p>
           </div>
         )}
-        <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
+        <input id="dropzone-file" type="file" name="image" className="hidden" onChange={handleFileChange} />
       </label>
     </div>
   );

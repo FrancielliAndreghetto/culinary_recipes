@@ -7,6 +7,8 @@ import { IUsersTokensRepository } from "@modules/auth/repositories/IUsersTokensR
 import { UsersTokensRepository } from "@modules/auth/infra/prisma/repositories/UsersTokensRepository";
 import { ICategoriesRepository } from "@modules/category/repositories/ICategoriesRepository";
 import { CategoriesRepository } from "@modules/category/infra/prisma/repositories/CategoriesRepository";
+import { IRecipesRepository } from "@modules/recipe/repositories/IRecipesRepository";
+import { RecipesRepository } from "@modules/recipe/infra/prisma/repositories/RecipesRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -21,4 +23,9 @@ container.registerSingleton<IUsersTokensRepository>(
 container.registerSingleton<ICategoriesRepository>(
   "CategoriesRepository",
   CategoriesRepository
+);
+
+container.registerSingleton<IRecipesRepository>(
+  "RecipesRepository",
+  RecipesRepository
 );

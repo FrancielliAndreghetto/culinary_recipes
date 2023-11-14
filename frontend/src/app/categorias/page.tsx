@@ -10,11 +10,13 @@ import NavBar from "@components/navegation/NavBar";
 import { api } from "@services/api";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import bolo from "@assets/bolo.jpg";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Tooltip } from "react-tooltip";
+import toastOptions from "@services/toastConfig";
+import Swal, { SweetAlertResult } from 'sweetalert2';
 
 type Category = {
   id: number;
@@ -25,71 +27,17 @@ type Category = {
 
 export default function Categorias() {
   const { data: session } = useSession();
-  
+
   const filesUrl = process.env.filesUrl;
   const [isAdmin, setIsAdmin] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null | string>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-
-  const handleFileChange = (file: File | null) => {
-    setSelectedImage(file);
-  };
-
-  const handleUpload = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (!selectedImage || !title || !description) {
-      alert("Por favor, preencha todos os campos antes de enviar.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("image", selectedImage);
-    try {
-      await api.post("category", formData, {
-        headers: {
-          'Authorization': `Bearer ${session?.token}`,
-        },
-      });
-
-      toast.info('Categoria salva com sucesso!', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        onClose: () => {
-          setTimeout(() => {
-            setModalOpen(false);
-            setTitle('');
-            setDescription('');
-            setSelectedImage(null);
-            fetchCategories();
-          }, 3000);
-        },
-      });
-      return;
-    } catch (error) {
-      toast.error('Erro ao salvar categoria!' + error, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-      return;
-    }
-  };
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [categoryId, setCategoryId] = useState<number | null>(null);
+  const [swalProps, setSwalProps] = useState({});
 
   const fetchCategories = useCallback(async () => {
     try {
@@ -97,11 +45,9 @@ export default function Categorias() {
 
       setCategories(response.data);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response && error.response.status === 401) {
-          // Tratar erro de autenticação, redirecionar para o login, renovar token, etc.
-        } else {
-        }
+      // Tratar erro de autenticação, redirecionar para o login, renovar token, etc.
+      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+
       } else {
         // Se não for um erro do Axios, você pode tratar de outra maneira
       }
@@ -122,7 +68,95 @@ export default function Categorias() {
       setIsAdmin(session.user.admin);
     }
   }, [session]);
+
+  const handleFileChange = (file: File | null) => {
+    setSelectedImage(file);
+  };
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
   
+    if (!selectedImage || !title || !description) {
+      alert("Por favor, preencha todos os campos antes de enviar.");
+      return;
+    }
+  
+    const formData = new FormData(event.currentTarget);
+  
+    try {
+      if (isUpdating) {
+        console.log(categoryId);
+        await api.patch(`category/${categoryId}`, formData, {
+          headers: {
+            'Authorization': `Bearer ${session?.token}`,
+          },
+        });
+      } else {
+        await api.post("category", formData, {
+          headers: {
+            'Authorization': `Bearer ${session?.token}`,
+          },
+        });
+      }
+  
+      setModalOpen(false);
+      setIsUpdating(false);
+      setTitle('');
+      setDescription('');
+      setSelectedImage(null);
+      fetchCategories();
+  
+      toast.info(`${isUpdating ? 'Categoria atualizada' : 'Categoria adicionada'} com sucesso!`, toastOptions);
+  
+      return;
+    } catch (error) {
+      toast.error(`Erro ao ${isUpdating ? 'atualizar' : 'adicionar'} categoria! ${error}`, toastOptions);
+      return;
+    }
+  }  
+
+  async function deleteCategory(categoryId: string) {
+    const result: SweetAlertResult = await Swal.fire({
+      title: 'Você tem certeza?',
+      text: 'Esta ação não pode ser desfeita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, tenho certeza!',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (!result.isConfirmed) {
+      return;
+    }
+
+    try {
+      await api.delete(`category/${categoryId}`, {
+        headers: {
+          'Authorization': `Bearer ${session?.token}`,
+        },
+      });
+
+      fetchCategories();
+
+      toast.info('Categoria deletada com sucesso!', toastOptions);
+      return;
+    } catch (error) {
+      toast.error('Erro ao deletar categoria!' + error, toastOptions);
+      return;
+    }
+  };
+
+  const handleUpdateCategory = (category: Category) => {
+    setIsUpdating(true);
+    setModalOpen(true);
+    setCategoryId(category.id);
+    setTitle(category.title);
+    setDescription(category.description);
+    setSelectedImage(category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : null);
+  };
+
   return (
     <>
       <NavBar />
@@ -138,7 +172,13 @@ export default function Categorias() {
           </div>
           <div className="flex flex-wrap justify-center gap-10">
             {categories.map((category) => (
-              <CategoryCard file={category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : bolo} key={category.id} isAdmin={isAdmin} title={category.title} />
+              <CategoryCard
+                deleteFunction={() => deleteCategory(`${category.id}`)}
+                updateFunction={() => handleUpdateCategory(category)}
+                file={category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : bolo}
+                key={category.id}
+                isAdmin={isAdmin}
+                title={category.title} />
             ))}
           </div>
         </div>
@@ -155,18 +195,18 @@ export default function Categorias() {
                 <span className="sr-only">Fechar modal</span>
               </button>
               <div className="px-6 py-6 lg:px-8">
-                <h3 className="mb-4 text-xl font-medium text-gray-900">Adicionar categoria</h3>
-                <form className="space-y-6" action="#">
+                <h3 className="mb-4 text-xl font-medium text-gray-900">{isUpdating ? 'Atualizar categoria' : 'Adicionar categoria'}</h3>
+                <form className="space-y-6" onSubmit={onSubmit}>
                   <InputGroup>
                     <Label htmfor="title">Título</Label>
-                    <Input value={title} id="title" type="title" placeholder="Digite o título" onChange={(e: any) => setTitle(e.target.value)} required />
+                    <Input value={title} name="title" id="title" type="title" placeholder="Digite o título" onChange={(e: any) => setTitle(e.target.value)} required />
                   </InputGroup>
                   <InputGroup>
                     <Label htmfor="description">Descrição</Label>
-                    <Input value={description} id="description" type="description" placeholder="Digite a desrcição" onChange={(e: any) => setDescription(e.target.value)} required />
+                    <Input value={description} name="description" id="description" type="description" placeholder="Digite a desrcição" onChange={(e: any) => setDescription(e.target.value)} required />
                   </InputGroup>
-                  <Dropzone onFileChange={handleFileChange} />
-                  <Button onClick={handleUpload}>Adicionar</Button>
+                  <Dropzone file={selectedImage} onFileChange={handleFileChange} />
+                  <Button>{isUpdating ? 'Atualizar' : 'Adicionar'}</Button>
                 </form>
               </div>
             </div>

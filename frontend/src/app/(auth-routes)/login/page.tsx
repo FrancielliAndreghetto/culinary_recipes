@@ -12,6 +12,7 @@ import Button from "@components/button/Button"
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
 import { signIn } from "next-auth/react";
+import toastOptions from '@services/toastConfig';
 
 export default function Login() {
 	const [email, setEmail] = useState('');
@@ -29,16 +30,7 @@ export default function Login() {
     })
 
     if (result?.error) {
-			toast.error('Erro ao logar, verifique os dados!', {
-				position: 'top-right',
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: 'light',
-			});
+			toast.error('Erro ao logar, verifique os dados!', toastOptions);
       return;
     }
 

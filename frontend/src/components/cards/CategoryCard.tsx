@@ -5,9 +5,11 @@ interface CardProps {
   title: string;
   file: string;
   isAdmin?: boolean;
+  deleteFunction?: any;
+  updateFunction?: any;
 }
 
-export default function CategoryCard({ title, file, isAdmin = false }: CardProps) {
+export default function CategoryCard({ title, file, isAdmin = false, deleteFunction = null, updateFunction = null }: CardProps) {
   return (
     <div className="w-52 h-96 bg-[#FFFFFF80] backdrop-blur-md hover:bg-[#FFA14AB2] transition-all rounded-3xl flex flex-col justify-evenly items-center group">
       <Image className="rounded-full w-28 h-28 object-fill" width={100} height={100} src={file} alt=""/>
@@ -16,12 +18,12 @@ export default function CategoryCard({ title, file, isAdmin = false }: CardProps
       <div className="flex gap-2">
         {isAdmin && (
           <>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Excluir categoria" data-tooltip-target="tooltip-default" className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
+            <button onClick={deleteFunction} data-tooltip-id="tooltip" data-tooltip-content="Excluir categoria" data-tooltip-target="tooltip-default" className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
               <Trash width={24} height={24} className="text-white group-hover:text-[#FFA14AB2]" />
-            </div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Editar categoria" className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
+            </button>
+            <button onClick={updateFunction} data-tooltip-id="tooltip" data-tooltip-content="Editar categoria" className="w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">
               <Pencil width={24} height={24} className="text-white group-hover:text-[#FFA14AB2]" />
-            </div>
+            </button>
           </>
         )}
         <div data-tooltip-id="tooltip" data-tooltip-content="Acessar categoria" className="tooltip w-12 h-12 flex justify-center items-center bg-[#FFA14AB2] rounded-full group-hover:bg-white cursor-pointer">

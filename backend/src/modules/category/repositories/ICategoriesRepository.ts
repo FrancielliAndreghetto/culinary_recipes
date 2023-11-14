@@ -7,7 +7,7 @@ interface ICategoriesRepository {
   findAllCategories(): Promise<Category[]>;
   saveWithImage({ title, description, image }: ICreateCategoryDTO): Promise<Category>;
   save({ title, description }: ICreateCategoryDTO): Promise<Category>;
-  updateCategory({ id, title, description }: IUpdateCategoryDTO): Promise<void>;
+  updateCategory({ id, title, description, image }: IUpdateCategoryDTO): Promise<void>;
   deleteCategory(id: number): Promise<void>;
 }
 
