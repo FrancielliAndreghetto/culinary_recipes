@@ -49,12 +49,10 @@ export default function Receitas() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (session?.token) {
-        await fetchRecipes();
-      }
+      await fetchRecipes();
     };
     fetchData();
-  }, [session?.token, fetchRecipes]);
+  }, [fetchRecipes]);
 
   useEffect(() => {
     if (session) {
