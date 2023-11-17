@@ -32,8 +32,17 @@ const Dropzone: React.FC<DropzoneProps> = ({ file = null, onFileChange }) => {
   return (
     <div className="flex items-center justify-center w-full">
       <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-[rgba(255,161,74,0.7)] border-dashed rounded-lg cursor-pointer bg-gray-50">
+
         {selectedImage ? (
-          <Image loader={({ src }) => src} src={selectedImage} alt="Imagem selecionada" width="200" height="200" className="w-full max-w-full max-h-full rounded-lg" />
+          <>
+            <button onClick={() => setSelectedImage(null)} type="button" className="absolute top-[13.3rem] left-[24.9rem] text-white bg-[rgb(247,179,115)] hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+              <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+              </svg>
+              <span className="sr-only">Fechar modal</span>
+            </button>
+            <Image loader={({ src }) => src} src={selectedImage} alt="Imagem selecionada" width="200" height="200" className="w-full max-w-full max-h-full rounded-lg" />
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg className="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">

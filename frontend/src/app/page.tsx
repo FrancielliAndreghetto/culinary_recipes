@@ -80,7 +80,7 @@ export default function Home() {
           <div className="py-24">
             <div className="flex justify-between items-center pb-11">
               <h1 className="font-semibold text-5xl">Melhores receitas</h1>
-              <a href="categorias" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
+              <a href="receitas" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
             </div>
             <div className="flex flex-wrap justify-center gap-20">
               <RecipeCard id={4} title="Bolos" stars={5} description="Id cursus metus aliquam eleifend mi in nulla posuere. Lorem faucibus vitae aliquet nec ullamcorper sit." />
@@ -91,7 +91,7 @@ export default function Home() {
           <div className="py-24">
             <div className="flex justify-between items-center pb-11">
               <h1 className="font-semibold text-5xl">Receita do dia</h1>
-              <a href="categorias" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
+              <a href="receitas" className="flex gap-1 text-base text-[#FFA14AB2] hover:text-[#ffa14a]">Ver todas<ChevronRight /></a>
             </div>
             <BestRecipeCard stars={5} />
           </div>

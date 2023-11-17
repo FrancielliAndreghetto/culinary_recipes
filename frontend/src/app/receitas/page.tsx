@@ -101,9 +101,7 @@ export default function Receitas() {
           <div className="flex justify-between items-center pb-11">
             <h1 className="font-semibold text-5xl">Receitas</h1>
             {isAdmin && (
-              <div className="w-40">
-                <Button data-tooltip-id="tooltip" data-tooltip-content="Adicionar receita">Adicionar</Button>
-              </div>
+              <a href="/receitas/cadastrar" className="w-40 h-12 flex justify-center items-center bg-[rgba(225,152,83,0.7)] rounded-md text-white hover:bg-[rgba(207,140,76,0.7)]" data-tooltip-id="tooltip" data-tooltip-content="Adicionar receita">Adicionar</a>
             )}
           </div>
           <div className="flex flex-wrap justify-center gap-6">

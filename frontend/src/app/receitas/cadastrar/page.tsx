@@ -9,6 +9,8 @@ import Label from "@components/labels/Label";
 import Input from "@components/inputs/Input";
 import TextEditor from "@components/editors/TextEditor";
 import { useState } from "react";
+import VideoDropZone from "@components/inputs/VideoDropZone";
+import Dropzone from "@components/inputs/DropZone";
 
 export default function Receitas() {
   // const { data: session } = useSession();
@@ -17,6 +19,12 @@ export default function Receitas() {
   const [ingredientes, setIngredientes] = useState('');
   const [preparation, setPreparation] = useState('');
   const [adicionalInformation, setAdicionalInformation] = useState('');
+  const [selectedVideo, setSelectedVideo] = useState<File | null | string>(null);
+  const [selectedImages, setSelectedImages] = useState<File[] | null | string>(null);
+
+  const handleFileChange = (file: File | null) => {
+    setSelectedVideo(file);
+  };
   
   return (
     <>
@@ -48,6 +56,12 @@ export default function Receitas() {
                 <Label htmfor="adicional_information">Informações adicionais</Label>
                 <TextEditor id="adicional_information" size={200} state={setAdicionalInformation}/>
               </InputGroup>
+              <Label htmfor="ingredientes">Images</Label>
+              <div className="flex gap-4 -mt-3">
+                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+              </div>
             </div>
           </div>
         </div>
