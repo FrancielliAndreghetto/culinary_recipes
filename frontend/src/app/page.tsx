@@ -45,9 +45,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (session?.token) {
-        await fetchCategories();
-      }
+      await fetchCategories();
     };
     fetchData();
   }, [session?.token, fetchCategories]);
@@ -75,7 +73,7 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap justify-center gap-10">
               {shuffledCategories.map((category) => (
-                <CategoryCard file={category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : bolo} key={category.id} isAdmin={false} title={category.title} />
+                <CategoryCard id={category.id} file={category.file && category.file.length > 0 ? filesUrl + category.file[0]?.file_path : bolo} key={category.id} isAdmin={false} title={category.title} />
               ))}
             </div>
           </div>
