@@ -5,3 +5,11 @@
 .plyr {
   height: 560px !important;
 }
+
+.tox-statusbar__branding {
+  display: none;
+}
+
+.tox-tinymce {
+  border: 1px solid #ffa14ab3 !important;
+}

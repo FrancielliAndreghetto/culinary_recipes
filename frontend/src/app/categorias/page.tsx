@@ -202,7 +202,7 @@ export default function Categorias() {
                   </InputGroup>
                   <InputGroup>
                     <Label htmfor="description">Descrição</Label>
-                    <Input value={description} name="description" id="description" type="description" placeholder="Digite a desrcição" onChange={(e: any) => setDescription(e.target.value)} required />
+                    <Input value={description} name="description" id="description" type="description" placeholder="Digite a descrição" onChange={(e: any) => setDescription(e.target.value)} required />
                   </InputGroup>
                   <Dropzone file={selectedImage} onFileChange={handleFileChange} />
                   <Button>{isUpdating ? 'Atualizar' : 'Adicionar'}</Button>

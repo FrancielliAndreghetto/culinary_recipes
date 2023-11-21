@@ -18,6 +18,16 @@ class RecipesRepository implements IRecipesRepository {
       },
       include: {
         file: true,
+        recipe_has_category: {
+          include: {
+            category: true,
+          },
+        },
+        user: {
+          select: {
+            name: true,
+          }
+        }
       },
     });
 
@@ -29,6 +39,16 @@ class RecipesRepository implements IRecipesRepository {
       include: {
         file: {
         },
+        recipe_has_category: {
+          include: {
+            category: true,
+          },
+        },
+        user: {
+          select: {
+            name: true,
+          }
+        }
       },
     });
 
@@ -42,6 +62,16 @@ class RecipesRepository implements IRecipesRepository {
       },
       include: {
         file: {
+        },
+        recipe_has_category: {
+          include: {
+            category: true,
+          },
+        },
+        user: {
+          select: {
+            name: true,
+          }
         }
       },
     });
@@ -78,7 +108,7 @@ class RecipesRepository implements IRecipesRepository {
     return recipe;
   }
 
-  async updateRecipe({ id, user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours}: IUpdateRecipeDTO): Promise<void> {
+  async updateRecipe({ id, user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours }: IUpdateRecipeDTO): Promise<void> {
     await prismaClient.recipe.update({
       data: {
         user_id,
