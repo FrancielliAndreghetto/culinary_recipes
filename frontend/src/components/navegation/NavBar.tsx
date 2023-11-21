@@ -91,8 +91,8 @@ export default function NavBar({ ...props }) {
 					text="Receitas"
 				/>
 				<ButtonRounded
-					active={route == '/cargos'}
-					href={`${appUrl}cargos`}
+					active={route == '/permissoes'}
+					href={`${appUrl}permissoes`}
 					Icon={Lock}
 					text="Permissões"
 				/>
