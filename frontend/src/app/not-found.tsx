@@ -37,7 +37,7 @@ const NotFound = () => {
   return (
     <main className="flex max-lg:h-screen justify-center items-center overflow-hidden relative">
       <div className="container flex flex-col justify-center items-center">
-        <div className="w-5/6">
+        <div className="w-4/6">
           <Image src={images[currentImageIndex]} alt="Error image" />
         </div>
         <div className="flex flex-col justify-center items-center gap-6">
