@@ -1,12 +1,13 @@
 import Image from "next/image";
 import bolo from "@assets/bolo.jpg"
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
 
 interface CardProps {
   title: string;
   description: string;
   stars: number;
   id: number;
+  isFavorite?: boolean;
 }
 
 function renderStars(stars: number) {
@@ -30,12 +31,16 @@ function renderStars(stars: number) {
   return starIcons;
 }
 
-export default function RecipeCard({ title, description, stars, id }: CardProps) {
+export default function RecipeCard({ title, description, stars, id, isFavorite = false}: CardProps) {
   const appUrl = process.env.appUrl;
+  const fill = isFavorite ? '#FFA14AB2' : 'transparent';
 
   return (
     <div className="w-[350px] h-[350px] bg-[#FFFFFF80] backdrop-blur-md rounded-3xl flex flex-col justify-evenly mt-24 items-center group hover:shadow-lg transition-all">
       <Image className="rounded-full w-52 h-52 -mt-28 object-fill" src={bolo} alt="" />
+      <a className="absolute top-3 right-3" href="">
+        <Star fill={fill} width={25} height={25} color="#FFA14AB2"/>
+      </a>
       <div className="px-8 flex flex-col gap-6 w-full">
         <h1 className="text-black text-3xl text-center font-medium">{title}</h1>
         <p className="text-[#333333CC] text-base">{description}</p>
