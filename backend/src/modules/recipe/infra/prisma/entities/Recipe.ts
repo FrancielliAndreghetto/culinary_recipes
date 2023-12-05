@@ -10,7 +10,7 @@ class Recipe {
   adicional_information?: string;
   cooking_hours: Decimal;
   images?: File[];
-  video?: File;
+  video?: string;
 }
 
 export { Recipe };

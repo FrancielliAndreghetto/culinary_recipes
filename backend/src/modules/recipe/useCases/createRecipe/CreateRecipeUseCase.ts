@@ -30,6 +30,7 @@ class CreateRecipeUseCase {
     adicional_information,
     cooking_hours,
     files,
+    video,
     categories
   }: ICreateRecipeDTO): Promise<IResponse> {
     const recipe = await this.recipesRepository.save({
@@ -42,6 +43,7 @@ class CreateRecipeUseCase {
       adicional_information,
       cooking_hours,
       files,
+      video,
       categories
     });
 

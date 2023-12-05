@@ -78,7 +78,7 @@ class RecipesRepository implements IRecipesRepository {
     return recipe;
   }
 
-  async save({ user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours, files, categories }: ICreateRecipeDTO): Promise<Recipe> {
+  async save({ user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours, files, video, categories }: ICreateRecipeDTO): Promise<Recipe> {
     const recipe = await prismaClient.recipe.create({
       data: {
         user_id,
@@ -89,6 +89,7 @@ class RecipesRepository implements IRecipesRepository {
         preparation,
         adicional_information,
         cooking_hours,
+        video,
         file: {
           create: files.map((file) => ({
             file_path: file.file_path,

@@ -45,12 +45,12 @@ export default function Categorias() {
 
       setCategories(response.data);
     } catch (error) {
-      // Tratar erro de autenticação, redirecionar para o login, renovar token, etc.
-      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+      // // Tratar erro de autenticação, redirecionar para o login, renovar token, etc.
+      // if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
 
-      } else {
-        // Se não for um erro do Axios, você pode tratar de outra maneira
-      }
+      // } else {
+      //   // Se não for um erro do Axios, você pode tratar de outra maneira
+      // }
     }
   }, []);
 
@@ -75,7 +75,7 @@ export default function Categorias() {
     event.preventDefault();
   
     if (!selectedImage || !title || !description) {
-      alert("Por favor, preencha todos os campos antes de enviar.");
+      toast.warning("Por favor, preencha todos os campos antes de enviar.", toastOptions);
       return;
     }
   
