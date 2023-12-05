@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import eu from "@assets/eu.jpg";
+import icon from "@assets/icon.jpg";
 import logo from "@assets/icon.png";
 import { Search } from 'lucide-react';
 import { useEffect, useRef, useState } from "react";
@@ -112,10 +112,10 @@ export default function NavBar({ ...props }) {
 				<div className="w-3/12 flex justify-end items-center gap-2 max-md:w-2/12" >
 					<div className="relative inline-block text-left" ref={menuRef}>
 						<div className="flex gap-3 justify-center items-center cursor-pointer" onClick={toggleMenu}>
-							<Image className="h-10 w-10 rounded-full" src={eu} alt="logo" />
+							<Image className="h-10 w-10 rounded-full" src={icon} alt="logo" />
 							<div className="max-md:hidden">
 								<h1 className="text-sm">{session?.user.name}</h1>
-								<p className="text-xs">Perfil</p>
+								<p className="text-xs">Usuário</p>
 							</div>
 						</div>
 						{menu && (

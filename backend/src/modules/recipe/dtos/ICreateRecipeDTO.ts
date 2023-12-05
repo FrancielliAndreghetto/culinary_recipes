@@ -11,6 +11,7 @@ interface ICreateRecipeDTO {
   adicional_information?: string;
   cooking_hours: Decimal;
   files?: File[];
+  video: string;
   categories: number[]
 }
 

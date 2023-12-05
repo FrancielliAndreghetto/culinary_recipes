@@ -7,6 +7,13 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
+  reactDevOverlay: false,
+  suppressDeprecationWarnings: true,
+  reactStrictMode: false,
+  onDemandEntries: {
+    maxInactiveAge: 1000 * 60 * 60,
+    pagesBufferLength: 5,
+  },
 }
 
 module.exports = nextConfig

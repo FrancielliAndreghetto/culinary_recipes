@@ -26,9 +26,9 @@ export default function Tab({ recipe }: TabProps) {
   };
 
   const tabContent: Record<TabKey, React.ReactNode> = {
-    'Ingredientes': recipe?.ingredients,
-    'ModoPreparo': recipe?.preparation,
-    'Instrucoes': recipe?.adicional_information,
+    'Ingredientes': <div dangerouslySetInnerHTML={{ __html: recipe?.ingredients || '' }} />,
+    'ModoPreparo': <div dangerouslySetInnerHTML={{ __html: recipe?.preparation || '' }} />,
+    'Instrucoes': <div dangerouslySetInnerHTML={{ __html: recipe?.adicional_information || '' }} />,
     'Avaliacoes': <div>Conteúdo das Avaliações</div>,
   };
 

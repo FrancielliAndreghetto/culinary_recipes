@@ -5,7 +5,7 @@ import Image from "next/image";
 import pizza from "@assets/pizza.jpg";
 import lasanha from "@assets/lasanha.jpg";
 import massa from "@assets/massa.jpg";
-import bolo from "@assets/bolo.jpg";
+import icon from "@assets/icon.jpg";
 import { useEffect, useState } from "react";
 import { api } from "@services/api";
 import Plyr from "plyr-react";
@@ -22,6 +22,7 @@ type Recipe = {
   preparation: string;
   adicional_information: string;
   cooking_hours: number;
+  video: string;
   file: Array<{ id: string; file_path: string; type: string }>;
   recipe_has_category: Array<{ recipe_id: number; category_id: number; category: { id: number; title: string; description: string } }>;
   user: { name: string; }
@@ -36,12 +37,19 @@ export default function Receita({ params }: { params: { id: string } }) {
     (async () => {
       try {
         const response = await api.get(`recipe/${params.id}`);
+        response.data.video = getYouTubeVideoId(response.data.video);
         setRecipe(response.data);
       } catch (error) {
         console.error('Erro ao buscar a receita:', error);
       }
     })();
   }, [params.id]);
+
+  function getYouTubeVideoId(url: string) {
+    const parts = url.split('/');
+    const lastPart = parts[parts.length - 1];
+    return lastPart;
+  }
 
   const imageFiles = recipe?.file.filter((file) => file.type === 'image') || [];
 
@@ -59,7 +67,12 @@ export default function Receita({ params }: { params: { id: string } }) {
                   }}
                   source={{
                     type: "video",
-                    sources: [{ src: recipe && filesUrl ? filesUrl + recipe.file.find((file) => file.type === 'video')?.file_path : '', type: 'video/mp4' }],
+                    sources: [
+                      {
+                        src: recipe?.video,
+                        provider: 'youtube'
+                      }
+                    ]
                   }}
                 />
               </div>
@@ -79,7 +92,7 @@ export default function Receita({ params }: { params: { id: string } }) {
             <div className="px-16 py-8 w-full flex flex-col gap-6">
               <h1 className="font-semibold text-3xl">{recipe?.title}</h1>
               <div className="flex gap-3 items-center h-full">
-                <Image className="h-8 w-8 rounded-full" src={bolo} alt="logo" />
+                <Image className="h-8 w-8 rounded-full" src={icon} alt="logo" />
                 <p className="text-sm">{recipe?.user.name}</p>
                 <div className="w-[1px] h-4 bg-[#DFDFDF]" />
                 {recipe?.recipe_has_category.map((category, index) => (
@@ -99,7 +112,7 @@ export default function Receita({ params }: { params: { id: string } }) {
                   <p className="text-sm">{recipe?.cooking_hours}h</p>
                 </div>
               </div>
-              <Tab recipe={recipe}/>
+              <Tab recipe={recipe} />
             </div>
           </div>
         </div>

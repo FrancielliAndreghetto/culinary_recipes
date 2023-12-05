@@ -100,6 +100,7 @@ model recipe {
   title                 String                @db.VarChar(80)
   description           String                @db.VarChar(45)
   ingredients           String                @db.LongText
+  video                 String                @db.VarChar(256)
   portion               Decimal?              @db.Decimal(2, 0)
   preparation           String?               @db.LongText
   adicional_information String?               @db.LongText

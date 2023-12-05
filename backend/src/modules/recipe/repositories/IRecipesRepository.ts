@@ -6,7 +6,7 @@ interface IRecipesRepository {
   findById(id: number): Promise<Recipe>;
   findAllRecipes(): Promise<Recipe[]>;
   findByCategory(category_id: number): Promise<Recipe[]>;
-  save({ user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours, files, categories }: ICreateRecipeDTO): Promise<Recipe>;
+  save({ user_id, title, description, ingredients, portion, preparation, adicional_information, cooking_hours, files, categories, video }: ICreateRecipeDTO): Promise<Recipe>;
   updateRecipe({ title, description, ingredients, portion, preparation, adicional_information, cooking_hours, files }: IUpdateRecipeDTO): Promise<void>;
   deleteRecipe(id: number): Promise<void>;
 }
