@@ -6,25 +6,24 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
+import eu from "@assets/eu.jpg";
 
 const TABLE_ROWS = [
   {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "John Michael",
-    email: "john@creative-tim.com",
-    job: "Manager",
-    org: "Organization",
+    img: "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small_2x/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg",
+    name: "Antonio de Souza",
+    email: "antoniodsouza@gmail.com",
+    job: "Administrador",
     online: true,
-    date: "23/04/18",
+    date: "04/12/2023",
   },
   {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Alexa Liras",
-    email: "alexa@creative-tim.com",
-    job: "Programmer",
-    org: "Developer",
+    img: "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small_2x/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg",
+    name: "Francielli Andreghetto",
+    email: "francielliandreghetto@gmail.com",
+    job: "Administrador",
     online: false,
-    date: "23/04/18",
+    date: "04/12/2023",
   },
 ];
 
@@ -40,10 +39,7 @@ export default function DataTable() {
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <h5>
-              Members list
-            </h5>
-            <h5 color="gray" className="mt-1 font-normal">
-              See information about all members
+              Membros
             </h5>
           </div>
         </div>
@@ -60,13 +56,10 @@ export default function DataTable() {
                 <p className="font-normal leading-none opacity-70">Nome</p>
               </th>
               <th className="border-y border-blue-gray-100 p-4">
-                <p className="font-normal leading-none opacity-70">Nome</p>
+                <p className="font-normal leading-none opacity-70">Perfil</p>
               </th>
               <th className="border-y border-blue-gray-100 p-4">
-                <p className="font-normal leading-none opacity-70">Nome</p>
-              </th>
-              <th className="border-y border-blue-gray-100 p-4">
-                <p className="font-normal leading-none opacity-70">Nome</p>
+                <p className="font-normal leading-none opacity-70">Data</p>
               </th>
             </tr>
           </thead>
@@ -89,7 +82,6 @@ export default function DataTable() {
                   <td>
                     <div className="flex flex-col">
                       <p className="font-normal"> {user.job}</p>
-                      <p className="font-normal opacity-70"> {user.org}</p>
                     </div>
                   </td>
                   <td>

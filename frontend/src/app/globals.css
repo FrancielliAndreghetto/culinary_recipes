@@ -13,3 +13,14 @@
 .tox-tinymce {
   border: 1px solid #ffa14ab3 !important;
 }
+
+.tox-toolbar__primary,
+.tox-toolbar__group{
+  background-color: transparent !important;
+}
+.tox-editor-header,
+.tox .tox-edit-area__iframe,
+.tox .tox-toolbar-overlord,
+.tox .tox-statusbar {
+  background-color: rgba(255,255,255,0.37) !important;
+}

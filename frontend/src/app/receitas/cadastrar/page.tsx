@@ -11,6 +11,8 @@ import TextEditor from "@components/editors/TextEditor";
 import { useState } from "react";
 import VideoDropZone from "@components/inputs/VideoDropZone";
 import Dropzone from "@components/inputs/DropZone";
+import RegisterRecipe from "@assets/RegisterRecipe.png"
+import Image from "next/image";
 
 export default function Receitas() {
   // const { data: session } = useSession();
@@ -31,39 +33,43 @@ export default function Receitas() {
       <NavBar />
       <main className="relative z-1">
         <div className="container z-1 mx-auto py-10">
-          <div className="flex flex-col w-full justify-center h-full bg-[rgb(255,255,255,0.50)] backdrop-blur-md rounded-2xl p-16">
-            <h1 className="font-semibold text-4xl text-center pb-6">Cadastrar receita</h1>
-            <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
+            <div className="flex flex-col w-auto justify-center h-2/5 bg-[rgb(255,255,255,0.50)] backdrop-blur-md shadow-lg rounded-2xl p-16">
+              <h1 className="font-semibold text-4xl text-center pb-6">Cadastrar receita</h1>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4">
+                  <InputGroup>
+                    <Label htmfor="name">Nome</Label> 
+                    <Input id="name" name="name" placeholder="Digite o nome" className="bg-[rgba(255,255,255,0.37)] rounded-md border-solid border-[0.5px] border-[rgba(255,161,74,0.7)] h-9 pl-4 focus:outline-none text-sm items-center"/>
+                  </InputGroup>
+                  <InputGroup>
+                    <Label htmfor="description">Descrição</Label>
+                    <Input id="description" name="description" placeholder="Digite a descrição" className="bg-[rgba(255,255,255,0.37)] rounded-md border-solid border-[0.5px] border-[rgba(255,161,74,0.7)] h-9 pl-4 focus:outline-none text-sm items-center"/>
+                  </InputGroup>
+                </div>
                 <InputGroup>
-                  <Label htmfor="name">Nome</Label>
-                  <Input id="name" name="name" placeholder="Digite o nome" />
+                  <Label htmfor="ingredientes">Ingredientes</Label>
+                  <TextEditor id="ingredientes" size={200} state={setIngredientes} />
                 </InputGroup>
                 <InputGroup>
-                  <Label htmfor="description">Descrição</Label>
-                  <Input id="description" name="description" placeholder="Digite a descrição" />
+                  <Label htmfor="preparation">Preparação</Label>
+                  <TextEditor id="preparation" size={200} state={setPreparation}/>
                 </InputGroup>
-              </div>
-              <InputGroup>
-                <Label htmfor="ingredientes">Ingredientes</Label>
-                <TextEditor id="ingredientes" size={200} state={setIngredientes}/>
-              </InputGroup>
-              <InputGroup>
-                <Label htmfor="preparation">Preparação</Label>
-                <TextEditor id="preparation" size={200} state={setPreparation}/>
-              </InputGroup>
-              <InputGroup>
-                <Label htmfor="adicional_information">Informações adicionais</Label>
-                <TextEditor id="adicional_information" size={200} state={setAdicionalInformation}/>
-              </InputGroup>
-              <Label htmfor="ingredientes">Images</Label>
-              <div className="flex gap-4 -mt-3">
-                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
-                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
-                <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                <InputGroup>
+                  <Label htmfor="adicional_information">Informações adicionais</Label>
+                  <TextEditor id="adicional_information" size={200} state={setAdicionalInformation}/>
+                </InputGroup>
+                <Label htmfor="images">Images</Label>
+                <div className="flex gap-4 -mt-3">
+                  <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                  <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                  <Dropzone  file={selectedImages} onFileChange={handleFileChange}/>
+                </div>
+                <InputGroup>
+                <Label htmfor="video">Vídeo</Label>
+                  <Dropzone fileType="Video"  file={selectedVideo} onFileChange={handleFileChange}/>
+                </InputGroup>
               </div>
             </div>
-          </div>
         </div>
         <Tooltip id="tooltip" style={{ background: '#fff', color: "#000", boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)", zIndex: "20" }} />
       </main>

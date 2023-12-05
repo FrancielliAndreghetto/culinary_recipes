@@ -23,21 +23,11 @@ export default function CargoCard ({users, imageURL, title}: CardProps) {
                     src={imageURL}
                     alt=""
                     />
-                    <Image 
-                    className="w-8 h-8 -ml-2 rounded-3xl"
-                    src={imageURL}
-                    alt=""
-                    />
-                    <Image 
-                    className="w-8 h-8 -ml-2 rounded-3xl"
-                    src={imageURL}
-                    alt=""
-                    />
                 </div>
             </div>
             <h1 className='font-semibold text-xl'>{title}</h1>
             <div className='flex justify-start items-center'>
-                <a href=''>Edit role</a>
+                <a className="text-[#ffa14af3]" href=''>Editar cargo</a>
             </div>
         </div>
     )
