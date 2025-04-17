@@ -1,21 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    filesUrl: 'http://localhost:3333/tmp/',
-    appUrl: 'http://localhost:3000/'
+    filesUrl: process.env.FILES_URL || 'http://localhost:3333/tmp/',
+    appUrl: process.env.APP_URL || 'http://localhost:3000/'
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'vercel.app', 'your-production-domain.com'],
   },
   reactDevOverlay: false,
   suppressDeprecationWarnings: true,
-  reactStrictMode: false,
+  reactStrictMode: true, // Ativar o modo estrito
   onDemandEntries: {
-    maxInactiveAge: 1000 * 60 * 60,
+    maxInactiveAge: 1000 * 60 * 15, // Ajuste do tempo de inatividade para 15 minutos
     pagesBufferLength: 5,
   },
   typescript: {
-    ignoreBuildErrors: true, // 👈 isso ignora os erros no build
+    ignoreBuildErrors: false, // Desative a ignorância de erros de tipo
   },
 }
 
