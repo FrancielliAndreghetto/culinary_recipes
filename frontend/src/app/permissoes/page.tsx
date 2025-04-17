@@ -1,11 +1,10 @@
-'use client'
 import CargoCard from "@components/cards/CargoCard";
 import NavBar from "@components/navegation/NavBar";
 import icon from "@assets/iconroles.jpg"
 import DataTable from "@components/table/DataTable";
 import AddRoleCard from "@components/cards/AddRoleCard";
 
-export default function cargos() {
+export default function Cargos() {
     return (
         <>
             <main className="relative z-1">

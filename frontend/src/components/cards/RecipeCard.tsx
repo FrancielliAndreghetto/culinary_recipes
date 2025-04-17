@@ -37,7 +37,7 @@ export default function RecipeCard({ title, description, stars, id, isFavorite =
 
   return (
     <div className="w-[350px] h-[350px] bg-[#FFFFFF80] backdrop-blur-md rounded-3xl flex flex-col justify-evenly mt-24 items-center group hover:shadow-lg transition-all">
-      <Image className="rounded-full w-52 h-52 -mt-28 object-fill" src={bolo} alt="" />
+      <Image className="rounded-full w-52 h-52 -mt-28 object-cover" src={bolo} alt="" />
       <a className="absolute top-3 right-3" href="">
         <Star fill={fill} width={25} height={25} color="#FFA14AB2"/>
       </a>
