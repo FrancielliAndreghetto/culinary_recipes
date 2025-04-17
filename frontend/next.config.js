@@ -7,9 +7,7 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'vercel.app', 'your-production-domain.com'],
   },
-  reactDevOverlay: false,
-  suppressDeprecationWarnings: true,
-  reactStrictMode: true, // Ativar o modo estrito
+  reactStrictMode: true, // Habilitar modo estrito
   onDemandEntries: {
     maxInactiveAge: 1000 * 60 * 15, // Ajuste do tempo de inatividade para 15 minutos
     pagesBufferLength: 5,
