@@ -1,8 +1,5 @@
 'use client'
-
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route"
 import ButtonLogout from "@components/button/ButtonLogout"
-import { getServerSession } from "next-auth"
 import { useSession } from "next-auth/react";
 
 export default function Admin(){
